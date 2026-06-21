@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<title>Battery ETA — Quand ma batterie sera à 0%</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <h1>🔋 Battery ETA</h1>
+      <p class="subtitle">Estimation de l'heure où ta batterie atteindra 0%</p>
+    </header>
+
+    <section class="card status-card">
+      <div class="battery-visual">
+        <div class="battery-shell">
+          <div id="batteryFill" class="battery-fill"></div>
+          <span id="batteryPercent" class="battery-percent">--%</span>
+        </div>
+        <div class="battery-tip"></div>
+      </div>
+      <p id="chargingState" class="charging-state">Statut inconnu</p>
+    </section>
+
+    <section class="card eta-card">
+      <div class="eta-row">
+        <span class="eta-label">Heure estimée à 0%</span>
+        <span id="etaTime" class="eta-value">—</span>
+      </div>
+      <div class="eta-row">
+        <span class="eta-label">Temps restant</span>
+        <span id="etaRemaining" class="eta-value">—</span>
+      </div>
+      <div class="eta-row">
+        <span class="eta-label">Vitesse de décharge</span>
+        <span id="drainRate" class="eta-value">—</span>
+      </div>
+      <p id="confidenceNote" class="confidence-note"></p>
+    </section>
+
+    <section id="manualSection" class="card manual-card hidden">
+      <h2>Saisie manuelle</h2>
+      <p class="hint">Ton navigateur ne donne pas accès au niveau de batterie automatiquement (courant sur iPhone). Note ton pourcentage de batterie de temps en temps pour obtenir une estimation.</p>
+      <form id="manualForm" class="manual-form">
+        <label for="manualLevel">Batterie actuelle (%)</label>
+        <input type="number" id="manualLevel" min="1" max="100" step="1" required placeholder="ex: 64">
+        <button type="submit">Ajouter la mesure</button>
+      </form>
+    </section>
+
+    <section class="card chart-card">
+      <h2>Historique de décharge</h2>
+      <canvas id="historyChart" width="600" height="220"></canvas>
+      <p id="chartEmpty" class="hint">Pas encore assez de données. Reviens dans quelques minutes ou ajoute une mesure manuelle.</p>
+    </section>
+
+    <section class="card">
+      <button id="resetBtn" class="secondary-btn">Réinitialiser l'historique de la session</button>
+    </section>
+
+    <footer class="footer">
+      <p>Les données restent sur ton appareil (localStorage). Rien n'est envoyé à un serveur.</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
