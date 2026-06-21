@@ -103,6 +103,28 @@ body {
 
 .eta-card { display: flex; flex-direction: column; gap: 10px; }
 
+.eta-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+
+.eta-hero-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.eta-hero-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
 .eta-row {
   display: flex;
   justify-content: space-between;

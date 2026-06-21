@@ -119,8 +119,11 @@ function formatDuration(minutes) {
   const totalMin = Math.round(minutes);
   const h = Math.floor(totalMin / 60);
   const m = totalMin % 60;
-  if (h <= 0) return `${m} min`;
-  return `${h} h ${String(m).padStart(2, '0')} min`;
+  const hLabel = h === 1 ? 'heure' : 'heures';
+  const mLabel = m === 1 ? 'minute' : 'minutes';
+  if (h <= 0) return `${m} ${mLabel}`;
+  if (m === 0) return `${h} ${hLabel}`;
+  return `${h} ${hLabel} et ${m} ${mLabel}`;
 }
 
 function formatTime(date) {
